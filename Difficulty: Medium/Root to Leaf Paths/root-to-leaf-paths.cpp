@@ -136,14 +136,18 @@ class Solution {
   public:
     int solve(Node* root,vector<vector<int>> &v,vector<int> v1){
         if(root==NULL) return 0;
+        v1.push_back(root->data);
+        
         if(root->left==NULL && root->right==NULL){
-            v1.push_back(root->data);
             v.push_back(v1);
             return 0;
         }
-        v1.push_back(root->data);
-        solve(root->left,v,v1);
-        solve(root->right,v,v1);
+        else{
+            solve(root->left,v,v1);
+            solve(root->right,v,v1);
+        }
+        v1.pop_back();
+        
     }
     vector<vector<int>> Paths(Node* root) {
         // code here
